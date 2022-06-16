@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "github.com/akshaykhairmode/grpc/proto";
+
+package grpc;
+
+service Calculator {
+    rpc Add (Request) returns (Reply) {}
+    rpc Sub (Request) returns (Reply) {}
+    rpc Mul (Request) returns (Reply) {}
+    rpc Div (Request) returns (Reply) {}
+}
+
+message Request {
+    repeated int32 nums = 1 [packed = true];
+}
+
+message Reply {
+    int32 num = 1;
+}
+
+// protoc calc.proto --go_out=. --go_opt=paths=source_relative --go-grpc_out=. -go-grpc_opt=paths=source_relative
